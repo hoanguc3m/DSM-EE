@@ -46,8 +46,9 @@ for (copula_fam in c(1:6)){
 polynomial = "rbeta_w"
 iK = 1; x.lag = 24;
 
-{
-    list_DCCMIDASCopula <- list()
+list_DSMIDASCopula <- list()
+
+for (copula_fam in c(1:6)){
     data.x = matrix(c(reduce_monthdata(bigdf$Rcor, bigdf$date)$data.x), ncol = 1)
     # Back to orginal month
     data.xdate = c(reduce_monthdata(bigdf$Rcor, bigdf$date)$data.xdate)
@@ -56,13 +57,14 @@ iK = 1; x.lag = 24;
                                data.udate = bigdf$date,
                                data.x = data.x, data.xdate = data.xdate,
                                x.lag = x.lag, polynomial = polynomial,
-                               family = 1,
+                               family = copula_fam,
                                est.start = time_start + 1, est.end = time_end - 1)
     data = List_input$data
     priors = List_input$priors
     arg = List_input$arg
-    list_DCCMIDASCopula[[1]] <-  fit.DCCMIDASC(data, priors, arg)
-    print(paste(" Copula ", 1, " log ML = ", list_DCCMIDASCopula[[1]]$log_llh ))
+    list_DSMIDASCopula[[copula_fam]] <-  fit.DSMIDASCopula(data, priors, arg)
+    print(paste(" Copula ", copula_fam, " log ML = ", list_DSMIDASCopula[[copula_fam]]$log_llh ))
+
 }
 
 
