@@ -4,7 +4,10 @@
 
 ``` r
 install.packages(c("Rcpp", "midasml", "VineCopula", "matrixcalc", "HelpersMG", "moments", "plyr", "MASS", "future.apply"))
+# For Linux machine
 install.packages("DSCopula_0.1.0_R_x86_64-pc-linux-gnu.tar.gz", repos = NULL, type = "source")
+# For Windows machine
+install.packages("DSCopula_0.1.0.zip", repos = NULL, type = "win.binary") 
 ```
 
 ## Load data
